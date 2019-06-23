@@ -1,0 +1,30 @@
+
+<body>
+<div>
+    <a href="/"> < </a>
+    <h1>{{username}}'s profile</h1>
+</div>
+
+
+
+<form action="edit/submit" method="POST">
+    <input type="text" name="username" value="{{username}}" id="userName">
+    <input type="number" name="age" value="{{age}}" id="age">
+    <input type="file" name="image" id="">
+        <div class= "radioButtons">
+            <label for="genderMale">Male</label>
+            <input type="radio" name="gender" value="male" id="gender">
+            <label for="genderFemale">Female</label>
+            <input type="radio" name="gender" value="female" id="gender">
+        </div>
+    <label for="length" id="lengthValue" >Length: {{length}} Cm  </label>
+    <input type="range" min="90"max="180"name="length" value="{{length}}" class="slider" id="length" onchange="updateLength(this.value);">
+    <input type="text" name="city" value="{{city}}" id="">
+    <input type="text" name="aboutMe" value="{{aboutMe}}" id="">
+    <label for="distance" id="distanceValue" >Distance: {{distance}} Km</label>
+    <input type="range" min="5" max="150"name="distance" value={{distance}} class="slider" id="distance" onchange="updateDistance(this.value);">
+    <button type="submit">Save changes</button>
+</form>
+
+    <img src="/images/lilli.png" alt="Size" id="sizeImage">
+</body>

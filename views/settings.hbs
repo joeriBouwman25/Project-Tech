@@ -1,0 +1,19 @@
+<div>
+    <a href="/"><</a>
+    <h1>Settings</h1>
+</div>
+
+<form action="/settings/submit" method="post">
+    <label for="genderPrefMale">Male</label>
+    <input type="radio" name="genderPref" value="male" id="genderPrefMale">
+    <label for="genderPrefFemale">Female</label>
+    <input type="radio" name="genderPref" value="Female" id="genderPrefFemale">
+    <label for="relationship">Serious relationship</label>
+    <input type="radio" name="relation" value="relationship" id="relationship">
+    <label for="friendship">Friendship</label>
+    <input type="radio" name="relation" value="friendship" id="friendship">
+    <input type="number" name="minAge" value={{minAge}} id="minAge">
+    <input type="number" name="maxAge" value={{maxAge}} id="maxAge">
+    <input type="email" name="email" value={{eMail}} id="">
+    <button type="submit">Save changes</button>
+</form>

@@ -1,0 +1,130 @@
+#sizeImage{ 
+    position: absolute;
+    top: -12%;
+    left: 66%;
+    /* height: 120px; */
+    transform: scale(.1);
+    transform-origin: bottom;
+    transition: .4s;
+}
+
+.profileImage{
+    max-width: 70%;
+    max-height: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 600px;
+}
+
+p{
+    color: royalblue;
+    text-align: center;
+    font-size: 2.3em;
+}
+
+.softCursive{
+    color: deepskyblue;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.8em;
+}
+
+
+.heading{
+    color: royalblue;
+    text-align: center;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: auto;
+
+}
+
+
+.radioButtons{
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+margin: 10px;
+}
+
+
+.slider{
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%;
+    height: 15px; /* Specified height */
+    outline: none; /* Remove outline */
+    background: #cbe1fd;
+    border-radius: 10px;
+    border-style: inset;
+    border-width: 1.2px;
+    border-color: royalblue;
+}
+  
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 15px; /* Set a specific slider handle width */
+    height: 15px; /* Slider handle height */
+    border-radius: 10px;
+    background: royalblue; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+div, a{
+    color: royalblue;
+}
+a{
+    text-decoration: none;
+    color: dimgray;
+    font-size: 1em;
+    /* border-style: solid; */
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+/* ,border-width: 1px; */
+    background-color: #b7bbfa8a;
+    
+
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}
+

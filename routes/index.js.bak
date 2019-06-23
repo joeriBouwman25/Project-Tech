@@ -1,0 +1,174 @@
+var express = require('express');
+var router = express.Router();
+var path = require('path');
+var mongoose = require('mongoose');
+
+var schema = mongoose.Schema;
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
+// put in another File, require
+// 
+var profileSchema = new schema({
+    userID: Number,
+    username: String,
+    image: String,
+    age: Number,
+    male: Boolean,
+    preferenceMale: Boolean,
+    length: Number,
+    distance: Number,
+    lookingForLove: Boolean,
+    aboutMe: String,
+    minAge: Number,
+    maxAge: Number,
+    pushNotifications: Boolean,
+    city: String,
+    eMail: String
+}, {collection: 'profile-settings'});
+
+var profileSettings = mongoose.model('profileSettings', profileSchema);
+var profileId ='5cff92aee0102f0216d00263';
+// dotenv
+mongoose.connect('mongodb+srv://admin:admin@cluster0-9uslu.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser : true
+
+});
+
+mongoose.connection.on('connected', function(){
+    console.log("connected to the database");
+})
+
+mongoose.connection.on('disconnected', function(){
+    console.log("Disconnected from the database");
+});
+
+
+router.post('/insert', function(req, res){
+    var item = {
+        username: "Peter",
+        image: "/images/profile.jpg",
+        age: "1222",
+        male: true,
+        preferenceMale: false,
+        length: 1.82,
+        distance: 5,
+        lookingForLove: true,
+        aboutMe: "looking for fun",
+        minAge: 15,
+        maxAge: 17,
+        pushNotifications: false,
+        city: "kingslanding",
+        eMail: "peter-dinklage@hotmail.com"
+    }
+    var data1 = new profileSettings(item);
+    data1.save();
+    console.log("inserted");
+    // res.redirect('/');
+});
+
+var database = {
+    username: "Peter",
+    image: "/images/profile.jpg",
+    age: "49",
+    male: true,
+    preferenceMale: false,
+    length: 120,
+    distance: 5,
+    lookingForLove: true,
+    aboutMe: "i like short girls",
+    minAge: 15,
+    maxAge: 17,
+    pushNotifications: false,
+    city: "kingslanding",
+    eMail: "peter-dinklage@hotmail.com"
+}
+
+
+
+router.get('/', function(req, res, next){
+    res.render('index', {
+        username: "Welcome " + res.username,
+        profileImage: database.image,
+        age: database.age,
+        aboutMe: database.aboutMe 
+    });
+});
+
+router.get('/editprofile', function(req, res, next){
+    res.render('editprofile', {
+        username: database.username,
+        age: database.age,
+        city: database.city,
+        aboutMe: database.aboutMe,
+        distance: database.distance,
+        length: database.length
+        
+    });
+});
+
+router.get('/settings', function(req, res, next){
+    profileSettings.findOne({ username: "Peter"})
+    .then(function(res){
+        res.render('/settings', {
+            minAge: res.minAge,
+            maxAge: res.maxAge,
+            eMail: res.eMail
+    
+        });
+    });
+
+});
+
+router.post('/edit/submit', function(req, res, next){
+    console.log("submitting edit");
+    profileSettings.findOne({ username: "Peter"}, function(err, res) {
+         var item2 = {
+            userID: 1,
+            username: req.body.username,
+            image: "/images/profile.jpg",
+            age: req.body.age,
+            male: true,
+            preferenceMale: false,
+            length: req.body.length,
+            distance: 5,
+            lookingForLove: true,
+            aboutMe: "test",
+            minAge: 15,
+            maxAge: 17,
+            pushNotifications: false,
+            city: "bussum",
+            eMail: "peter-dinklage@hotmail.com"
+         }
+         var data2 = profileSettings(item2);
+         data2.save();
+    });
+});
+
+// router.put('/edit/submit', function(req, res, next){
+//     profileSettings.findOneAndUpdate({username: "Peter"},req.body).then(function(){
+//     console.log(req.body);
+//         res.send(profileSettings);
+//     console.log(profileSettings);
+//     })
+// });
+
+router.post('/settings/submit', function(req, res, next){
+    database.minAge = req.body.minAge;
+    database.maxAge = req.body.maxAge;
+    if(req.body.genderPref == "male"){
+        database.preferenceMale = true;
+    }
+    else{
+        database.preferenceMale = false;
+    }
+    if(req.body.relation == "relationship"){
+        database.lookingForLove = true;
+    }
+    else{
+        database.lookingForLove = false;
+    }
+    database.eMail = req.body.eMail;
+    res.redirect('/settings');
+});
+
+module.exports = router;
